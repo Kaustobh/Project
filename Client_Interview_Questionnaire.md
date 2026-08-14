@@ -1,83 +1,182 @@
 # Client & User Interview Questionnaire
 
-> **Purpose:** A structured qualitative interview framework for rapid product discovery and friction research. Use this questionnaire during live user observation sessions and discovery interviews to unpack real human behaviors, workarounds, pain points, and prioritization.
+> **Purpose:** Documented qualitative user interview recording real human behaviors, workarounds, friction points, and prioritization for rapid product prototyping.
 
 ---
 
-## 1. Participant Background
-
-* [ ] Could you briefly tell me about yourself?
-* [ ] What is your relationship with `[topic/task]`?
-* [ ] How often do you perform or experience `[task]`?
-* [ ] When did you last do this task?
-* [ ] How important is this task in your daily or weekly life?
-* [ ] What device or method do you usually use for it?
+## 👤 Participant Profile
+* **Participant Name:** Lakshay
+* **Age:** 24
+* **Role/Occupation:** MBBS Intern
+* **Key Context:** Balancing high-pressure hospital duties, academic studying & presentations, household chores (cooking/cleaning), and personal development under constantly shifting schedules.
 
 ---
 
-## 2. Current Behavior
+## 1. Participant Background & Routine
 
-* [ ] Please walk me through the last time you completed `[task]`, from beginning to end.
-* [ ] What usually triggers you to start this task?
-* [ ] What steps do you normally follow?
-* [ ] Who else is involved in this process?
-* [ ] What tools, apps, websites, or offline methods do you use?
-* [ ] How do you decide what to do first?
-* [ ] How much time does the task usually take?
-* [ ] What information do you need before completing it?
-* [ ] What happens after you finish the task?
+* **Could you briefly tell me about yourself?**
+  > **Answer:** I am Lakshay, 24 years old, and currently working as an MBBS intern while managing hospital work, studying, household tasks, and personal development.
 
-> 💡 **Methodology Tip:** Questions that ask users to describe a recent real experience generally reveal more useful behavior than questions about what they might do hypothetically. *(Ref: [Maze User Interview Guide](https://maze.co/guides/user-interviews/questions/))*
+* **What does a normal weekday look like for you?**
+  > **Answer:** My weekdays usually include hospital work, presentations, studying, household chores, and meeting people, but changing schedules often make it difficult to manage my time.
 
----
+* **What activities take up most of your time?**
+  > **Answer:** Hospital work, studying, preparing presentations, household responsibilities, and personal activities take up most of my time.
 
-## 3. Problems and Frustrations
+* **Which activities do you perform every day or every week?**
+  > **Answer:** I regularly manage hospital duties, studying, cleaning, cooking, arranging my home, and personal development.
 
-* [ ] Which part of the process is the most difficult?
-* [ ] What is the most frustrating part, and why?
-* [ ] When was the last time something went wrong?
-* [ ] What caused the problem?
-* [ ] How did you solve it?
-* [ ] How often does this problem occur?
-* [ ] What do you usually do when you cannot complete the task?
-* [ ] Are there any steps that feel unnecessary, repetitive, or confusing?
-* [ ] Is there any information that is difficult to find or understand?
-* [ ] Have you ever made a mistake during this process? What happened?
-* [ ] What are the consequences when this task is delayed or completed incorrectly?
-* [ ] Have you created any shortcut or workaround to make the process easier?
+* **Which part of your routine do you enjoy the least?**
+  > **Answer:** I enjoy cleaning and cooking the least because they are repetitive and take time away from studying, hobbies, and rest.
+
+* **Which task do you often postpone or avoid?**
+  > **Answer:** I often postpone cleaning and personal-development activities when hospital work or academic responsibilities become more urgent.
 
 ---
 
-## 4. Needs and Goals
+## 2. Daily Experiences & Current Behavior
 
-* [ ] What are you mainly trying to achieve when completing `[task]`?
-* [ ] What does a successful experience look like for you?
-* [ ] What is most important to you: speed, cost, convenience, accuracy, privacy, control, or something else?
-* [ ] What would make this task easier?
-* [ ] What would help you feel more confident while completing it?
-* [ ] What information or support do you wish you had?
-* [ ] What would you like to avoid during this process?
-* [ ] How would improving this experience affect your daily life?
+* **Please describe a recent day when something did not go as planned.**
+  > **Answer:** Hospital work and presentation preparation took longer than expected, leaving little time for household responsibilities, personal activities, or rest.
+
+* **What was the most difficult task you had to complete recently?**
+  > **Answer:** Preparing a hospital presentation was difficult because I had to research, fact-check, organize, and complete it under deadline pressure.
+
+* **Can you walk me through the last time you experienced that situation?**
+  > **Answer:** I researched the topic through YouTube, books, and AI, organized the information into a flowchart, checked its relevance, and completed the presentation despite limited time.
+
+* **What were you trying to accomplish?**
+  > **Answer:** I was trying to create an accurate, clear, and practically relevant presentation while completing my other responsibilities.
+
+* **What steps did you take?**
+  > **Answer:** I researched the topic, compared information, checked important facts, organized the content, and created a visual flowchart.
+
+* **What happened at each stage?**
+  > **Answer:** I initially felt uncertain, then became overwhelmed by the amount of information, and finally experienced deadline pressure while organizing the final presentation.
+
+* **Who else was involved?**
+  > **Answer:** My colleagues and peers were involved in the hospital-related work, although I completed most of the research and preparation independently.
+
+* **What tools, apps, or offline methods did you use?**
+  > **Answer:** I used YouTube, books, AI tools, personal notes, and flowcharts to research and organize the information.
+
+* **How much time and effort did it require?**
+  > **Answer:** It required considerable time and mental effort because I had to research, fact-check, prioritize, and manage several tasks simultaneously.
+
+---
+
+## 3. Discovering Problems & Frustrations
+
+* **What regularly causes you stress or inconvenience?**
+  > **Answer:** Changing work schedules, deadlines, multiple responsibilities, and uncertainty about priorities regularly cause stress.
+
+* **Which task requires more effort than it should?**
+  > **Answer:** Cleaning, presentation preparation, and deciding which information is relevant often require more effort than expected.
+
+* **What do you frequently forget, lose, or repeat?**
+  > **Answer:** I frequently lose track of time, repeat research, and reconsider decisions about what is important.
+
+* **What information is usually difficult to find?**
+  > **Answer:** Reliable and relevant information that can be applied to real-world situations is often difficult to identify.
+
+* **When do you feel confused or uncertain?**
+  > **Answer:** I feel uncertain when several tasks seem equally important or when I have difficulty deciding what information to include.
+
+* **What do you often have to wait for?**
+  > **Answer:** I often wait for government-related processes and services on official websites, which can be slow and confusing.
+
+* **What process do you think is unnecessarily complicated?**
+  > **Answer:** Government websites and processes are unnecessarily complicated because they often contain unclear instructions and repetitive steps.
+
+* **What do you commonly complain about to friends, family, or colleagues?**
+  > **Answer:** I commonly complain about hospital work, household responsibilities, time management, and negative behavior from colleagues or peers.
+
+* **What task do you wish someone else could make easier?**
+  > **Answer:** I wish someone could make cleaning, household management, and prioritizing my daily responsibilities easier.
+
+* **What problem have you simply learned to tolerate?**
+  > **Answer:** I have learned to tolerate poor time management, repetitive tasks, unclear government processes, and feeling busy without feeling productive.
+
+---
+
+## 4. Understanding Impact & Needs
+
+* **How often does this problem occur?**
+  > **Answer:** This problem occurs regularly, especially during busy hospital periods, deadlines, and weeks with multiple responsibilities.
+
+* **When did you first notice it?**
+  > **Answer:** I noticed it more clearly during the last one or two weeks when hospital work, studying, presentations, and household duties became difficult to balance.
+
+* **What do you currently do to manage it?**
+  > **Answer:** I work on one task at a time, practise regularly, use learning resources, and reflect on my day before sleeping.
+
+* **Have you created any workaround or shortcut?**
+  > **Answer:** I focus on one task at a time and use AI to organize information, generate ideas, and create flowcharts.
+
+* **How much time does it usually waste?**
+  > **Answer:** It can waste approximately 50% of my available time through indecision, repeated research, task switching, and rework.
+
+* **Does it cost you money or create additional effort?**
+  > **Answer:** It does not create a major financial cost, but it causes additional mental effort, repeated work, and lost personal time.
+
+* **How does it make you feel?**
+  > **Answer:** It makes me feel irritated, pressured, uncertain, and underwhelmed even when I have completed several tasks.
+
+* **What happens if you do not solve it?**
+  > **Answer:** I may continue making mistakes, repeating tasks, losing personal time, and feeling that I am falling behind.
+
+* **Who else is affected by this problem?**
+  > **Answer:** My colleagues and peers may be affected by delays or mistakes, while my personal relationships may be affected by reduced time and attention.
+
+* **How important would it be to improve this experience?**
+  > **Answer:** Improving this experience is very important because it could help me manage responsibilities, reduce stress, and create more time for study, hobbies, rest, and relationships.
 
 ---
 
 ## 5. Existing Solutions
 
-* [ ] What do you currently like about the tools or methods you use?
-* [ ] What do you dislike about them?
-* [ ] Have you tried any other solutions?
-* [ ] Why did you stop using them or continue using them?
-* [ ] What is missing from the current solution?
-* [ ] Are there any features you find unnecessary or difficult to use?
-* [ ] How do you decide whether to trust a product or service related to this task?
+* **Have you searched for a solution before?**
+  > **Answer:** Yes, I have explored time-management methods, the 80/20 rule, planning techniques, books, YouTube videos, and AI tools.
+
+* **What solutions have you already tried?**
+  > **Answer:** I have tried task planning, working on one task at a time, regular practice, consistent effort, productivity principles, and AI-assisted organization.
+
+* **What worked well?**
+  > **Answer:** Focusing on one task at a time, regular practice, and using AI for organization have been the most helpful approaches.
+
+* **What did not work?**
+  > **Answer:** Fixed schedules and productivity methods based mainly on completing more tasks do not work well when my hospital schedule changes.
+
+* **Why do you continue using your current method?**
+  > **Answer:** I continue using these methods because they are familiar, accessible, and sometimes provide useful structure.
+
+* **What is missing from the tools or services you currently use?**
+  > **Answer:** They do not provide personalized prioritization, flexible planning, energy-based recommendations, or a way to measure meaningful progress.
+
+* **What makes you distrust or avoid alternative solutions?**
+  > **Answer:** I avoid tools that feel rigid, complicated, unrealistic, overly focused on quantity, or likely to create additional pressure.
 
 ---
 
-## 6. Prioritization
+## 6. Prioritizing Problems
 
-* [ ] If you could fix only one problem, which one would you choose?
-* [ ] Which problem wastes the most time?
-* [ ] Which problem causes the most stress?
-* [ ] Which problem affects the result most seriously?
-* [ ] Which improvement would you use most frequently?
-* [ ] What would make you switch from your current method to a new solution?
+* **Which problem would you most like to eliminate?**
+  > **Answer:** I would most like to eliminate the difficulty of prioritizing and managing hospital work, studying, household tasks, personal life, and hobbies together.
+
+* **Which problem affects you most frequently?**
+  > **Answer:** Time management affects me most frequently because I must constantly divide my limited time between competing responsibilities.
+
+* **Which problem causes the most stress?**
+  > **Answer:** Deadline pressure combined with uncertainty about whether I have done enough causes the most stress.
+
+* **Which problem wastes the most time?**
+  > **Answer:** Decision-making, repeated research, fact-checking, and switching between tasks waste the most time.
+
+* **Which problem would be valuable for other people to solve as well?**
+  > **Answer:** A flexible system for managing multiple responsibilities would help medical interns, students, and professionals with unpredictable schedules.
+
+* **If this problem disappeared tomorrow, what would improve in your life?**
+  > **Answer:** I would have clearer priorities, less stress, more personal time, better sleep, and greater satisfaction with my daily progress.
+
+* **Why is solving this problem important to you now?**
+  > **Answer:** It is important because my responsibilities as an MBBS intern are increasing, and I need a better way to balance work, studying, household duties, personal growth, and rest.
