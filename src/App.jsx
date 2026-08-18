@@ -196,7 +196,7 @@ export default function App() {
     : 'bg-[#F9F9F7] shadow-neu-light-inset text-[#1F2937]';
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 font-sans bg-noise ${
+    <div className={`min-h-screen transition-colors duration-300 font-sans bg-noise flex flex-col justify-between ${
       darkMode ? 'bg-[#1A1A1C] text-[#F9F9F7]' : 'bg-[#F9F9F7] text-[#1F2937]'
     }`}>
       {/* Screen Reader WCAG Live Announcements */}
@@ -204,81 +204,57 @@ export default function App() {
         {liveAnnouncement}
       </div>
 
-      {/* Page 0: Splash / Loading Screen */}
-      {showSplash && (
-        <SplashScreen
-          darkMode={darkMode}
-          onComplete={() => setShowSplash(false)}
-        />
-      )}
-
-      {/* Top Navbar */}
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        soundEnabled={soundEnabled}
-        setSoundEnabled={setSoundEnabled}
-        onOpenNewTask={() => setNewTaskModalOpen(true)}
-        onReplaySplash={() => setShowSplash(true)}
-        neuCardClass={neuCardClass}
-      />
-
-      {/* Global Navigation Bar */}
-      <Navigation
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        darkMode={darkMode}
-        soundEnabled={soundEnabled}
-        neuCardClass={neuCardClass}
-        neuInsetClass={neuInsetClass}
-      />
-
-      {/* 5-Second Undo Toast Banner */}
-      {undoToast && (
-        <div className="fixed top-20 right-6 z-50 animate-bounce">
-          <div className={`p-4 rounded-2xl ${neuCardClass} shadow-2xl border border-amber-500/40 flex items-center gap-3 text-xs`}>
-            <span className="font-semibold text-amber-500 flex items-center gap-1">
-              <Sparkles size={14} /> Item Removed
-            </span>
-            <button
-              onClick={() => workspaceEngine.undoDelete()}
-              className="px-3 py-1.5 bg-amber-500 text-white font-bold rounded-lg flex items-center gap-1 neu-button"
-            >
-              <RotateCcw size={12} /> Undo
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Main View Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 pb-24 md:pb-16 pt-2">
-        {activeTab === 'dashboard' && (
-          <DashboardView
-            tasks={tasks}
-            activeTask={activeTask}
-            setActiveTask={setActiveTask}
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            onToggleSubtask={handleToggleSubtask}
-            onOpenTaskModal={(task) => setTaskModalTask(task)}
-            onOpenNewTask={() => setNewTaskModalOpen(true)}
-            timerSeconds={timerSeconds}
-            isTimerRunning={isTimerRunning}
-            setIsTimerRunning={setIsTimerRunning}
-            timerMode={timerMode}
-            setTimerMode={setTimerMode}
-            setTimerSeconds={setTimerSeconds}
-            completedSessions={completedSessions}
-            soundEnabled={soundEnabled}
+      <div>
+        {/* Page 0: Splash / Loading Screen */}
+        {showSplash && (
+          <SplashScreen
             darkMode={darkMode}
-            neuCardClass={neuCardClass}
-            neuInsetClass={neuInsetClass}
+            onComplete={() => setShowSplash(false)}
           />
         )}
 
-        {activeTab === 'tasks' && (
-          <div className="space-y-6">
-            <TasksView
+        {/* Top Navbar */}
+        <Navbar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
+          onOpenNewTask={() => setNewTaskModalOpen(true)}
+          onReplaySplash={() => setShowSplash(true)}
+          neuCardClass={neuCardClass}
+        />
+
+        {/* Global Navigation Bar */}
+        <Navigation
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          darkMode={darkMode}
+          soundEnabled={soundEnabled}
+          neuCardClass={neuCardClass}
+          neuInsetClass={neuInsetClass}
+        />
+
+        {/* 5-Second Undo Toast Banner */}
+        {undoToast && (
+          <div className="fixed top-20 right-6 z-50 animate-bounce">
+            <div className={`p-4 rounded-2xl ${neuCardClass} shadow-2xl border border-amber-500/40 flex items-center gap-3 text-xs`}>
+              <span className="font-semibold text-amber-500 flex items-center gap-1">
+                <Sparkles size={14} /> Item Removed
+              </span>
+              <button
+                onClick={() => workspaceEngine.undoDelete()}
+                className="px-3 py-1.5 bg-amber-500 text-white font-bold rounded-lg flex items-center gap-1 neu-button"
+              >
+                <RotateCcw size={12} /> Undo
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Main View Container */}
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
+          {activeTab === 'dashboard' && (
+            <DashboardView
               tasks={tasks}
               activeTask={activeTask}
               setActiveTask={setActiveTask}
@@ -287,105 +263,138 @@ export default function App() {
               onToggleSubtask={handleToggleSubtask}
               onOpenTaskModal={(task) => setTaskModalTask(task)}
               onOpenNewTask={() => setNewTaskModalOpen(true)}
+              timerSeconds={timerSeconds}
+              isTimerRunning={isTimerRunning}
               setIsTimerRunning={setIsTimerRunning}
+              timerMode={timerMode}
+              setTimerMode={setTimerMode}
+              setTimerSeconds={setTimerSeconds}
+              completedSessions={completedSessions}
               soundEnabled={soundEnabled}
               darkMode={darkMode}
               neuCardClass={neuCardClass}
               neuInsetClass={neuInsetClass}
             />
+          )}
 
-            {/* Quick Interactive Checklist Section */}
-            <div className="pt-6 border-t border-gray-200/40 dark:border-gray-800/40 space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-bold font-display flex items-center gap-2">
-                    <Sparkles size={18} className="text-[#5DA8A8]" /> Quick Execution Cards
-                  </h3>
-                  <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-                    Tap a card to view details or check off completion.
-                  </p>
+          {activeTab === 'tasks' && (
+            <div className="space-y-6">
+              <TasksView
+                tasks={tasks}
+                activeTask={activeTask}
+                setActiveTask={setActiveTask}
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                onToggleSubtask={handleToggleSubtask}
+                onOpenTaskModal={(task) => setTaskModalTask(task)}
+                onOpenNewTask={() => setNewTaskModalOpen(true)}
+                setIsTimerRunning={setIsTimerRunning}
+                soundEnabled={soundEnabled}
+                darkMode={darkMode}
+                neuCardClass={neuCardClass}
+                neuInsetClass={neuInsetClass}
+              />
+
+              {/* Quick Interactive Checklist Section */}
+              <div className="pt-6 border-t border-gray-200/40 dark:border-gray-800/40 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold font-display flex items-center gap-2">
+                      <Sparkles size={18} className="text-[#5DA8A8]" /> Quick Execution Cards
+                    </h3>
+                    <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+                      Tap a card to view details or check off completion.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {tasks.map(task => (
+                    <TaskCardMicroInteraction
+                      key={task.id}
+                      task={task}
+                      onToggleComplete={(id, newStatus) => handleToggleTaskStatus(id, newStatus)}
+                      onOpenDrawer={(t) => openContextualDrawer(t, 'task')}
+                      soundEnabled={soundEnabled}
+                      darkMode={darkMode}
+                      neuCardClass={neuCardClass}
+                      neuInsetClass={neuInsetClass}
+                    />
+                  ))}
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tasks.map(task => (
-                  <TaskCardMicroInteraction
-                    key={task.id}
-                    task={task}
-                    onToggleComplete={(id, newStatus) => handleToggleTaskStatus(id, newStatus)}
-                    onOpenDrawer={(t) => openContextualDrawer(t, 'task')}
-                    soundEnabled={soundEnabled}
-                    darkMode={darkMode}
-                    neuCardClass={neuCardClass}
-                    neuInsetClass={neuInsetClass}
-                  />
-                ))}
-              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {activeTab === 'flow' && (
-          <FlowCanvasView
-            flowNodes={flowNodes}
-            flowEdges={flowEdges}
-            tasks={tasks}
-            events={events}
-            onNodePositionChange={(id, pos) => workspaceEngine.updateNodePosition(id, pos)}
-            onCreateNode={(data) => workspaceEngine.createFlowNode(data)}
-            onDeleteNode={(id) => workspaceEngine.deleteFlowNode(id)}
-            onCreateEdge={(src, tgt, label) => workspaceEngine.createFlowEdge(src, tgt, label)}
-            onDeleteEdge={(id) => workspaceEngine.deleteFlowEdge(id)}
-            onConvertEntityToNode={(type, id, pos) => workspaceEngine.convertEntityToNode(type, id, pos)}
-            soundEnabled={soundEnabled}
-            darkMode={darkMode}
-            neuCardClass={neuCardClass}
-            neuInsetClass={neuInsetClass}
-          />
-        )}
+          {activeTab === 'flow' && (
+            <FlowCanvasView
+              flowNodes={flowNodes}
+              flowEdges={flowEdges}
+              tasks={tasks}
+              events={events}
+              onNodePositionChange={(id, pos) => workspaceEngine.updateNodePosition(id, pos)}
+              onCreateNode={(data) => workspaceEngine.createFlowNode(data)}
+              onDeleteNode={(id) => workspaceEngine.deleteFlowNode(id)}
+              onCreateEdge={(src, tgt, label) => workspaceEngine.createFlowEdge(src, tgt, label)}
+              onDeleteEdge={(id) => workspaceEngine.deleteFlowEdge(id)}
+              onConvertEntityToNode={(type, id, pos) => workspaceEngine.convertEntityToNode(type, id, pos)}
+              soundEnabled={soundEnabled}
+              darkMode={darkMode}
+              neuCardClass={neuCardClass}
+              neuInsetClass={neuInsetClass}
+            />
+          )}
 
-        {activeTab === 'events' && (
-          <EventCalendarView
-            events={events}
-            tasks={tasks}
-            onCreateEvent={(evtData) => workspaceEngine.createEvent(evtData)}
-            onAddTaskToEvent={(evtId, tData) => workspaceEngine.addTaskToEvent(evtId, tData)}
-            onOpenEventDrawer={(evt) => openContextualDrawer(evt, 'event')}
-            soundEnabled={soundEnabled}
-            darkMode={darkMode}
-            neuCardClass={neuCardClass}
-            neuInsetClass={neuInsetClass}
-          />
-        )}
+          {activeTab === 'events' && (
+            <EventCalendarView
+              events={events}
+              tasks={tasks}
+              onCreateEvent={(evtData) => workspaceEngine.createEvent(evtData)}
+              onAddTaskToEvent={(evtId, tData) => workspaceEngine.addTaskToEvent(evtId, tData)}
+              onOpenEventDrawer={(evt) => openContextualDrawer(evt, 'event')}
+              soundEnabled={soundEnabled}
+              darkMode={darkMode}
+              neuCardClass={neuCardClass}
+              neuInsetClass={neuInsetClass}
+            />
+          )}
 
-        {activeTab === 'pinboard' && (
-          <PinboardView
-            pinboardItems={pinboardItems}
-            onOpenNewPin={() => setNewPinModalOpen(true)}
-            onDeletePin={(id) => setPinboardItems(prev => prev.filter(p => p.id !== id))}
-            soundEnabled={soundEnabled}
-            darkMode={darkMode}
-            neuCardClass={neuCardClass}
-            neuInsetClass={neuInsetClass}
-          />
-        )}
+          {activeTab === 'pinboard' && (
+            <PinboardView
+              pinboardItems={pinboardItems}
+              onOpenNewPin={() => setNewPinModalOpen(true)}
+              onDeletePin={(id) => setPinboardItems(prev => prev.filter(p => p.id !== id))}
+              soundEnabled={soundEnabled}
+              darkMode={darkMode}
+              neuCardClass={neuCardClass}
+              neuInsetClass={neuInsetClass}
+            />
+          )}
 
-        {activeTab === 'analytics' && (
-          <AnalyticsView
-            tasks={tasks}
-            completedSessions={completedSessions}
-            reflection={reflection}
-            setReflection={setReflection}
-            onRolloverTasks={() => {
-              setReflection(prev => ({ ...prev, rolledOverTasksCount: tasks.filter(t => t.status !== 'completed').length }));
-            }}
-            soundEnabled={soundEnabled}
-            darkMode={darkMode}
-            neuCardClass={neuCardClass}
-            neuInsetClass={neuInsetClass}
-          />
-        )}
-      </main>
+          {activeTab === 'analytics' && (
+            <AnalyticsView
+              tasks={tasks}
+              completedSessions={completedSessions}
+              reflection={reflection}
+              setReflection={setReflection}
+              onRolloverTasks={() => {
+                setReflection(prev => ({ ...prev, rolledOverTasksCount: tasks.filter(t => t.status !== 'completed').length }));
+              }}
+              soundEnabled={soundEnabled}
+              darkMode={darkMode}
+              neuCardClass={neuCardClass}
+              neuInsetClass={neuInsetClass}
+            />
+          )}
+        </main>
+      </div>
+
+      {/* Global Copyright Footer - Bottom Left Corner */}
+      <footer className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-8 text-left border-t border-gray-200/30 dark:border-gray-800/30 mt-12">
+        <p className={`text-xs font-medium tracking-wide ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+          © 2026 Kaustobh Bhattacharya. All rights reserved.
+        </p>
+      </footer>
 
       {/* Task Modal */}
       {taskModalTask && (
