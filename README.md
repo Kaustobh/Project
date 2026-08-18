@@ -1,60 +1,55 @@
-# 1-Week Rapid Prototype: UX & Product Design
+# Steady — One Clear Step at a Time
 
-> **Project Goal:** Rapidly prototype a solution for a single, highly specific friction for a real human within 1 week. This repository emphasizes complete transparency, critical product judgment, and working in the open.
-
----
-
-## 1. The Human & The Observed Friction
-
-* **Target User (Who they are):**
-  > *[Describe the specific individual or user persona experiencing this friction. Include relevant context like role, environment, and tools used.]*
-
-* **The Specific Friction (What step is harder than it should be):**
-  > *[Detail the exact bottleneck or friction point in their workflow. Be specific—focus on a single micro-interaction or step rather than a generic problem.]*
-
-* **The Status Quo & Workaround (Why they accept it):**
-  > *[Explain how the user currently deals with this issue, why the existing workaround persists, and what makes it tolerable despite the inefficiency.]*
+> **Project Goal:** Rapidly prototype a production-ready solution for a single, highly specific friction for a real human (MBBS intern Lakshay) within 1 week. This repository emphasizes complete transparency, critical product judgment, tactile Neumorphic design precision, and working in the open.
 
 ---
 
-## 2. Product Scope & Deliberate Exclusions
+## 🌐 Live Application Links
 
-### Core Solution (What Was Built)
-> *[Summarize the MVP feature(s) designed and implemented specifically to remove the identified friction point.]*
+* **[http://localhost:3000/](http://localhost:3000/)** — Primary Live App Server
+* **[http://localhost:3001/](http://localhost:3001/)** — Secondary Port
 
-### Explicit Out-of-Scope List (What Was NOT Built & Why)
-> *[List features, edge cases, polish, or integrations deliberately excluded to preserve the 1-week scope focus.]*
+---
 
-| Feature / Idea Excluded | Reason for Exclusion | Future Trigger / Condition |
+## 📁 Repository Structure & Documentation Suite
+
+```
+├── docs/                           # Documentation suite
+│   ├── 01_discovery_notes.md       # Raw observations & qualitative interview takeaways
+│   ├── 02_scope_tradeoffs.md       # What we are building vs. NOT building (Scope matrix)
+│   ├── 03_decision_log.md          # Execution log, dead ends, AI prompts & manual overrides
+│   ├── 04_ui_design_system.md      # Neumorphic design tokens, palette & 1:1 image mapping
+│   ├── 05_technical_architecture.md# Technical stack, component breakdown & timer mechanics
+│   ├── 06_field_test_protocol.md   # Field test protocol, evaluation tasks & user metrics
+│   └── 07_user_impact_and_painpoint_resolution.md # Deep dive: How Steady solves user pain points
+├── public/                         # Static image assets (LOGO.png, KPI_1-6.jpeg)
+├── src/                            # Production React codebase
+└── README.md                       # High-level overview & documentation index
+```
+
+---
+
+## 📖 Complete Documentation Index
+
+- 💡 **[07. User Context & Pain Point Resolution](docs/07_user_impact_and_painpoint_resolution.md):** Deep dive on user friction points (decision paralysis, shift anxiety, downtime waste) and how Steady features directly resolve them.
+- 📖 **[01. Discovery Notes & Interview Takeaways](docs/01_discovery_notes.md):** Qualitative research with MBBS intern Lakshay, problem statements, POV, and How-Might-We (HMW) design frameworks.
+- 🎯 **[02. Scope Trade-offs](docs/02_scope_tradeoffs.md):** Core solution boundaries, 1+3 task framing, and explicit out-of-scope feature matrix.
+- 🪵 **[03. Decision Log](docs/03_decision_log.md):** Execution log history, architectural pivots, dead ends, AI hallucination overrides, and milestone records.
+- 🎨 **[04. UI Design System & Asset Guidelines](docs/04_ui_design_system.md):** 60-30-10 color rules, extruded/inset shadow tokens, audio haptic synthesis, and 1:1 image placement table.
+- 🏗️ **[05. Technical Architecture](docs/05_technical_architecture.md):** Vite + React architecture, LocalStorage schema, component hierarchy, and Pomodoro timer mechanics.
+- 🔬 **[06. Field Test Protocol](docs/06_field_test_protocol.md):** 1-Day unmoderated field test evaluation tasks, metrics checklist, and observation protocol.
+
+---
+
+## 🖼️ Attached Image Asset Mapping (Zero Duplication)
+
+| Asset Name | Location in App | Function |
 | :--- | :--- | :--- |
-| *e.g., User Authentication* | *Unnecessary for single-user live field test* | *If scaling to multiple users* |
-| *e.g., Backend Database Sync* | *Local storage is sufficient for validation* | *If persistence across sessions is needed* |
-| *e.g., Custom Theme Toggle* | *Cosmetic polish out of scope for 1-week timeline* | *Post-validation UI refactor* |
-
----
-
-## 3. AI Collaboration & Manual Overrides
-
-* **Where AI Provided Value (High Leverage):**
-  > *[Detail where AI accelerated development—e.g., scaffolding components, generating boilerplate, suggesting patterns, or rapid CSS layout.]*
-
-* **Where AI Hallucinated / Over-Engineered (Human Override Required):**
-  > *[Detail specific instances where AI generated unnecessarily complex code, hallucinated non-existent APIs, or missed core UX nuances, requiring manual intervention.]*
-
-| Date / Task | AI Behavior / Output | Manual Override Taken | Lesson / Outcome |
-| :--- | :--- | :--- | :--- |
-| *YYYY-MM-DD* | *e.g., Added complex Redux setup for simple state* | *Replaced with local React state* | *Kept architecture lean* |
-| *YYYY-MM-DD* | *e.g., Hallucinated non-existent library method* | *Implemented custom 5-line utility* | *Avoided unnecessary dependency* |
-
----
-
-## 4. Live Field Test Results
-
-* **Test Setup & Environment:**
-  > *[Describe how the test was conducted—e.g., unmoderated session, live observation, real environment.]*
-
-* **User Reaction & Key Observations:**
-  > *[What happened when the target user actually used the prototype? Include direct quotes, observed emotions, and task success/failure notes.]*
-
-* **Key Learnings & Next Steps:**
-  > *[What did this field test reveal about the original assumption? What should be iterated, kept, or scrapped?]*
+| **`LOGO.png`** | Splash Screen & Top Navbar | Breathing logo frame & header brand identity |
+| **`logo.jpeg`** | Hero Focus Card & Pinboard Audio | Watermark graphic backdrop & audio item thumbnail |
+| **`KPI_1.jpeg`** | Dashboard KPI Card 1 | Graphic backdrop for **Time Reclaimed** metric |
+| **`KPI_2.jpeg`** | Dashboard KPI Card 2 | Graphic backdrop for **Active Flow** metric |
+| **`KPI_3.jpeg`** | Dashboard KPI Card 3 | Graphic backdrop for **Completion Rate** metric |
+| **`KPI_4.jpeg`** | Pinboard Item 1 | Thumbnail for *ECG Interpretation Guide* |
+| **`KPI_5.jpeg`** | Pinboard Item 2 | Thumbnail for *10-Min Box Breathing* |
+| **`KPI_6.jpeg`** | Pinboard Item 3 | Thumbnail for *80/20 Med Study Rule* |

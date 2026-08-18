@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Subtle background texture overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(93, 168, 168, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Breathing pulse keyframes for splash screen logo */
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 0 0 rgba(93, 168, 168, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+    box-shadow: 0 0 25px 8px rgba(93, 168, 168, 0.3);
+  }
+}
+
+.animate-breathing {
+  animation: breathing 2.4s ease-in-out infinite;
+}
+
+/* 60fps Elastic SVG Stroke Draw keyframe */
+@keyframes strokeDraw {
+  0% {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dasharray: 24;
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-strokeDraw {
+  animation: strokeDraw 0.35s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+/* Neumorphic tactile button click effect */
+.neu-button {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-button:active {
+  transform: scale(0.97);
+}
+
+/* WCAG 2.1 AA Reduced Motion Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse, .animate-breathing, .animate-strokeDraw, .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(93, 168, 168, 0.6);
+}

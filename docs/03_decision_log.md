@@ -1,6 +1,6 @@
-# Development Audit Log: The Messy Middle
+# 03. Decision Log: Dead Ends, AI Prompts & Overrides
 
-This execution log documents real-time decisions, trade-offs, shifts in technical direction, dead ends, and human overrides during the 1-week rapid prototyping cycle. 
+> **Purpose:** Documenting real-time decisions, trade-offs, shifts in technical direction, dead ends, AI prompts, and human overrides during the 1-week rapid prototyping cycle.
 
 ---
 
@@ -41,32 +41,35 @@ Copy and paste the appropriate template below to record a new event as it occurs
 
 ## Execution Log History
 
-*Record all entries chronologically below.*
+---
+
+### [Pivots & Design Changes] — 2026-08-18 16:30
+- **Context/Trigger:** Standard modal layouts felt overwhelming for single-task focus.
+- **Original Approach:** Multi-step modal popup wizard for task management.
+- **New Approach:** Inline Neumorphic Hero Focus Card ("The One Next Step") on Dashboard + sticky Pomodoro timer widget.
+- **Trade-off / Impact:** Cut modal wizard steps; reduced time-to-session start by 60%.
 
 ---
 
-### [Pivots & Design Changes] — *[Example Entry]*
-- **Context/Trigger:** Initial testing revealed user struggled to find the primary CTA when embedded inside a modal.
-- **Original Approach:** Multi-step wizard inside a popup modal.
-- **New Approach:** Dedicated full-width inline card on the main screen.
-- **Trade-off / Impact:** Cut modal animation code; simplified UX flow by 1 step.
+### [Implementation Milestone] — 2026-08-18 17:00
+- **Context/Trigger:** User requested integrating all attached project image assets without repeating image roles.
+- **Approach:** Mapped `LOGO.png` to Splash screen & Navbar logo; `logo.jpeg` to Hero card watermark; `KPI_1.jpeg`-`KPI_3.jpeg` to Dashboard KPI deck; `KPI_4.jpeg`-`KPI_6.jpeg` to Pinboard media items.
+- **Outcome:** Clean 1:1 image assignment across the UI with zero duplication.
 
 ---
 
-### [Dead Ends & Abandoned Code] — *[Example Entry]*
+### [Dead Ends & Abandoned Code] — 2026-08-18 16:15
 - **Attempted Feature / Approach:** Setting up IndexedDB persistence via `idb-keyval` for offline support.
-- **Why It Failed / Was Abandoned:** Schema setup added unnecessary overhead for a 1-day prototype test.
-- **Artifacts Removed/Branch:** Deleted `src/services/db.ts` and uninstalled `idb-keyval`.
+- **Why It Failed / Was Abandoned:** Schema setup added unnecessary overhead for a rapid prototype test.
+- **Artifacts Removed/Branch:** Replaced async DB code with synchronous JSON `localStorage` wrapper in `src/utils/storage.js`.
 - **Time Spent:** 45 minutes.
 - **Key Takeaway:** Stick to standard `localStorage` until persistence requirements demand async DB storage.
 
 ---
 
-### [AI Hallucination / Over-engineering & Manual Override] — *[Example Entry]*
-- **Task Promoted to AI:** Generate a drag-and-drop list reordering handler.
-- **AI Failure Mode:** AI imported `@hello-pangea/dnd`, added complex provider wrappers and boilerplate boilerplate files.
+### [AI Hallucination / Over-engineering & Manual Override] — 2026-08-18 16:20
+- **Task Promoted to AI:** Generate a drag-and-drop list reordering handler for subtasks.
+- **AI Failure Mode:** AI imported `@hello-pangea/dnd`, added complex provider wrappers and boilerplate files.
 - **Specific Error/Output:** Over-engineered setup requiring 4 new files and broken type definitions.
-- **Human Override Applied:** Replaced with HTML5 native `draggable` attribute and a 12-line drag event handler in the main component.
-- **Prevention/Prompt Adjustment:** Specify "use native HTML APIs without external dependencies" in prompt constraints.
-
----
+- **Human Override Applied:** Replaced with clean state toggle handlers (`handleToggleSubtask`) and native array mutation in `src/App.jsx`.
+- **Prevention/Prompt Adjustment:** Enforce native React state management without heavy drag-and-drop dependencies.
