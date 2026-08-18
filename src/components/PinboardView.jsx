@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Shuffle, Clock, ExternalLink, Trash2, Sparkles, Film, BookOpen, Video, Music, Quote, Compass } from 'lucide-react';
+import { Plus, Shuffle, Clock, ExternalLink, Trash2, Sparkles, Film, BookOpen, Video, Music } from 'lucide-react';
 import { playSoftClick, playSuccessChime } from '../utils/audio';
 
 export default function PinboardView({
@@ -21,7 +21,6 @@ export default function PinboardView({
     setIsShuffling(true);
     setPickedItem(null);
 
-    // Filter items <= selectedMinutes or closest duration
     const eligible = pinboardItems.filter(item => item.durationMinutes <= selectedMinutes);
     const pool = eligible.length > 0 ? eligible : pinboardItems;
 
@@ -53,13 +52,13 @@ export default function PinboardView({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
         <div>
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
-            <Sparkles size={16} /> Free-Time Hub — Antidote to Paralysis
+            <Sparkles size={16} /> Downtime Hub
           </div>
           <h2 className="text-2xl font-bold tracking-tight font-display">
-            Curated Downtime Pinboard
+            Free-Time Pinboard
           </h2>
           <p className={`text-xs sm:text-sm mt-1 max-w-2xl ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Eliminate decision fatigue during breaks. Pick an available time window and let Steady recommend your next article, video, or read.
+            Curated articles, videos, and relaxation breaks. Select your available time to get a recommendation.
           </p>
         </div>
 
@@ -71,7 +70,7 @@ export default function PinboardView({
             }}
             className="px-4 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-2 shadow-sm neu-button font-display"
           >
-            <Shuffle size={16} /> One-Tap "Pick For Me"
+            <Shuffle size={16} /> Pick For Me
           </button>
 
           <button
@@ -81,7 +80,7 @@ export default function PinboardView({
             }}
             className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${neuCardClass} hover:text-[#5DA8A8] neu-button`}
           >
-            <Plus size={16} /> Capture Item
+            <Plus size={16} /> Save Item
           </button>
         </div>
       </div>
@@ -90,7 +89,7 @@ export default function PinboardView({
       {pinboardItems.length === 0 ? (
         <div className={`p-12 rounded-3xl text-center ${neuCardClass}`}>
           <p className={`text-sm mb-4 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Your pinboard is empty. Save articles, videos, or audio tracks to cure downtime paralysis.
+            Your pinboard is empty. Save articles, videos, or audio tracks for your breaks.
           </p>
           <button
             onClick={() => {
@@ -99,7 +98,7 @@ export default function PinboardView({
             }}
             className="px-4 py-2.5 bg-[#5DA8A8] text-white text-xs font-semibold rounded-xl neu-button"
           >
-            Capture First Item
+            Save First Item
           </button>
         </div>
       ) : (
@@ -160,7 +159,7 @@ export default function PinboardView({
                       Open Link <ExternalLink size={13} />
                     </a>
                   ) : (
-                    <span className="text-xs text-gray-400">Saved Snippet</span>
+                    <span className="text-xs text-gray-400">Saved Note</span>
                   )}
 
                   <button
@@ -186,7 +185,7 @@ export default function PinboardView({
           <div className={`max-w-md w-full p-6 sm:p-7 rounded-3xl ${neuCardClass} shadow-2xl relative`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold font-display flex items-center gap-2">
-                <Shuffle size={20} className="text-[#5DA8A8]" /> Pick For Me Engine
+                <Shuffle size={20} className="text-[#5DA8A8]" /> Pick a Break
               </h3>
               <button
                 onClick={() => setPickModalOpen(false)}
@@ -197,7 +196,7 @@ export default function PinboardView({
             </div>
 
             <p className={`text-xs mb-5 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-              Select your available free minutes. We will curate the best match to eliminate decision fatigue.
+              Select your available free time. Steady will choose an item for you.
             </p>
 
             {/* Minutes Selector */}
@@ -224,8 +223,8 @@ export default function PinboardView({
             {pickedItem ? (
               <div className={`p-4 rounded-2xl mb-6 ${neuInsetClass} border border-[#5DA8A8]/30 animate-fadeIn`}>
                 <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#5DA8A8] mb-1">
-                  <span>Selected Anchor</span>
-                  <span>{pickedItem.durationMinutes} min read</span>
+                  <span>Recommendation</span>
+                  <span>{pickedItem.durationMinutes} min</span>
                 </div>
                 <h4 className="text-base font-bold font-display mb-1">{pickedItem.title}</h4>
                 {pickedItem.quote && (
@@ -238,14 +237,14 @@ export default function PinboardView({
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#5DA8A8] text-white text-xs font-semibold rounded-lg"
                   >
-                    Consume Now <ExternalLink size={12} />
+                    Open Now <ExternalLink size={12} />
                   </a>
                 )}
               </div>
             ) : isShuffling ? (
               <div className={`p-6 rounded-2xl mb-6 text-center ${neuInsetClass}`}>
                 <Sparkles size={24} className="mx-auto text-[#5DA8A8] animate-spin mb-2" />
-                <p className="text-xs font-semibold text-[#5DA8A8]">Shuffling downtime pool...</p>
+                <p className="text-xs font-semibold text-[#5DA8A8]">Finding a recommendation...</p>
               </div>
             ) : null}
 
@@ -255,7 +254,7 @@ export default function PinboardView({
                 disabled={isShuffling}
                 className="flex-1 py-3 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-2 neu-button shadow-sm"
               >
-                <Shuffle size={16} /> {pickedItem ? 'Shuffle Again' : 'Pick Recommendation'}
+                <Shuffle size={16} /> {pickedItem ? 'Pick Another' : 'Get Recommendation'}
               </button>
             </div>
           </div>

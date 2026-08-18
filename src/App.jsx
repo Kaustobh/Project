@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useSyncExternalStore } from 'react';
+import React, { useState, useEffect } from 'react';
 import SplashScreen from './components/SplashScreen';
 import Navbar from './components/Navbar';
 import Navigation from './components/Navigation';
@@ -16,7 +16,7 @@ import ContextualDrawer from './components/ContextualDrawer';
 import { ReactiveWorkspaceEngine, INITIAL_TAGS, INITIAL_EVENTS, INITIAL_FLOW_NODES, INITIAL_FLOW_EDGES } from './store/reactiveStore';
 import { INITIAL_TASKS, INITIAL_PINBOARD, INITIAL_REFLECTION } from './utils/storage';
 import { playSuccessChime, playSoftClick } from './utils/audio';
-import { RotateCcw, X, Sparkles } from 'lucide-react';
+import { RotateCcw, Sparkles } from 'lucide-react';
 
 // Instantiate reactive store engine
 const initialTaskData = (() => {
@@ -238,13 +238,13 @@ export default function App() {
         <div className="fixed top-20 right-6 z-50 animate-bounce">
           <div className={`p-4 rounded-2xl ${neuCardClass} shadow-2xl border border-amber-500/40 flex items-center gap-3 text-xs`}>
             <span className="font-semibold text-amber-500 flex items-center gap-1">
-              <Sparkles size={14} /> Item Deleted
+              <Sparkles size={14} /> Item Removed
             </span>
             <button
               onClick={() => workspaceEngine.undoDelete()}
               className="px-3 py-1.5 bg-amber-500 text-white font-bold rounded-lg flex items-center gap-1 neu-button"
             >
-              <RotateCcw size={12} /> Undo (5s)
+              <RotateCcw size={12} /> Undo
             </button>
           </div>
         </div>
@@ -294,14 +294,18 @@ export default function App() {
               neuInsetClass={neuInsetClass}
             />
 
-            {/* Micro-Interaction Checklist Section */}
+            {/* Quick Interactive Checklist Section */}
             <div className="pt-6 border-t border-gray-200/40 dark:border-gray-800/40 space-y-4">
-              <h3 className="text-lg font-bold font-display flex items-center gap-2">
-                <Sparkles size={18} className="text-[#5DA8A8]" /> Reactive Micro-Interaction Task List
-              </h3>
-              <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-                Features 60fps elastic SVG check animations, particle explosions, and high-contrast WCAG 2.1 AA focus rings.
-              </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-bold font-display flex items-center gap-2">
+                    <Sparkles size={18} className="text-[#5DA8A8]" /> Quick Execution Cards
+                  </h3>
+                  <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+                    Tap a card to view details or check off completion.
+                  </p>
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {tasks.map(task => (

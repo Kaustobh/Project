@@ -4,11 +4,11 @@ import { playSoftClick } from '../utils/audio';
 
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { id: 'tasks', label: 'Tasks & Micro-Flow', icon: CheckSquare },
-  { id: 'flow', label: 'Flow Canvas Map', icon: GitGraph },
-  { id: 'events', label: 'Events Agenda', icon: Calendar },
-  { id: 'pinboard', label: 'Free-Time Pinboard', icon: Bookmark },
-  { id: 'analytics', label: 'Decompression', icon: BarChart2 },
+  { id: 'tasks', label: 'Tasks', icon: CheckSquare },
+  { id: 'flow', label: 'Flow Map', icon: GitGraph },
+  { id: 'events', label: 'Events', icon: Calendar },
+  { id: 'pinboard', label: 'Pinboard', icon: Bookmark },
+  { id: 'analytics', label: 'Reflection', icon: BarChart2 },
 ];
 
 export default function Navigation({
@@ -34,13 +34,13 @@ export default function Navigation({
                   playSoftClick(soundEnabled);
                   setActiveTab(item.id);
                 }}
-                className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all whitespace-nowrap neu-button ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all whitespace-nowrap neu-button ${
                   isActive
                     ? `${neuInsetClass} text-[#5DA8A8]`
                     : 'hover:text-[#5DA8A8]'
                 }`}
               >
-                <Icon size={16} className={isActive ? 'text-[#5DA8A8]' : 'opacity-60'} />
+                <Icon size={15} className={isActive ? 'text-[#5DA8A8]' : 'opacity-60'} />
                 <span>{item.label}</span>
               </button>
             );
@@ -67,7 +67,7 @@ export default function Navigation({
                     : 'text-gray-500 dark:text-gray-400'
                 }`}
               >
-                <Icon size={17} />
+                <Icon size={16} />
                 <span className="text-[9px] font-medium">{item.label}</span>
               </button>
             );

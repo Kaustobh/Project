@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, LayoutGrid, List, CheckCircle2, Circle, ChevronRight, Play, Clock, Sparkles, Filter } from 'lucide-react';
+import { Plus, LayoutGrid, List, CheckCircle2, Circle, ChevronRight, Play, Filter } from 'lucide-react';
 import { CATEGORIES } from '../utils/storage';
 import { playSoftClick } from '../utils/audio';
 
@@ -32,9 +32,9 @@ export default function TasksView({
       {/* Header & Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight font-display">Tasks & Execution Engine</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display">Tasks</h2>
           <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Structured focus blocks and single-task execution.
+            Organize your daily priorities and focus blocks.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function TasksView({
             }}
             className="px-4 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-2 shadow-sm neu-button"
           >
-            <Plus size={16} /> Create Task
+            <Plus size={16} /> New Task
           </button>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function TasksView({
       {filteredTasks.length === 0 ? (
         <div className={`p-12 rounded-3xl text-center ${neuCardClass}`}>
           <p className={`text-sm mb-4 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            No tasks match your selected criteria.
+            No tasks match your filter.
           </p>
           <button
             onClick={() => {
@@ -171,7 +171,7 @@ export default function TasksView({
                           ? 'bg-amber-500/10 text-amber-500'
                           : 'bg-emerald-500/10 text-emerald-500'
                       }`}>
-                        {task.priority} Priority
+                        {task.priority}
                       </span>
                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${neuInsetClass}`}>
                         {task.completedBlocks}/{task.estimatedBlocks} blocks
@@ -215,7 +215,7 @@ export default function TasksView({
                 {/* Progress Bar & Actions Footer */}
                 <div className="pt-3 border-t border-gray-200/40 dark:border-gray-800/40 space-y-3">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className={darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}>Dynamic Execution</span>
+                    <span className={darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}>Progress</span>
                     <span className="text-[#5DA8A8]">{progressPercent}%</span>
                   </div>
 
@@ -235,7 +235,7 @@ export default function TasksView({
                       }}
                       className="px-3 py-1.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5 neu-button"
                     >
-                      <Play size={14} /> Start Session
+                      <Play size={14} /> Start Focus
                     </button>
 
                     <button
@@ -245,7 +245,7 @@ export default function TasksView({
                       }}
                       className={`px-3 py-1.5 rounded-xl text-xs font-medium transition ${neuCardClass} hover:text-[#5DA8A8] neu-button`}
                     >
-                      Details & Notes
+                      Details
                     </button>
                   </div>
                 </div>

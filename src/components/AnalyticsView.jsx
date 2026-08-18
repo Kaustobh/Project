@@ -21,13 +21,13 @@ export default function AnalyticsView({
 
   // Calculate metrics
   const totalFocusMinutes = completedSessions * 25;
-  const estimatedBaselineMinutes = tasks.reduce((acc, t) => acc + t.estimatedBlocks * 25, 0);
+  const estimatedBaselineMinutes = tasks.reduce((acc, t) => acc + (t.estimatedBlocks || 1) * 25, 0);
 
   // Category breakdown calculation
   const categoryStats = CATEGORIES.filter(c => c.id !== 'all').map(cat => {
     const catTasks = tasks.filter(t => t.category === cat.id);
-    const blocksCompleted = catTasks.reduce((acc, t) => acc + t.completedBlocks, 0);
-    const totalBlocks = catTasks.reduce((acc, t) => acc + t.estimatedBlocks, 0);
+    const blocksCompleted = catTasks.reduce((acc, t) => acc + (t.completedBlocks || 0), 0);
+    const totalBlocks = catTasks.reduce((acc, t) => acc + (t.estimatedBlocks || 1), 0);
     const percentage = totalBlocks === 0 ? 0 : Math.round((blocksCompleted / Math.max(1, totalBlocks)) * 100);
 
     return {
@@ -40,7 +40,7 @@ export default function AnalyticsView({
     };
   });
 
-  const incompleteTasks = tasks.filter(t => t.subtasks.some(s => !s.done));
+  const incompleteTasks = tasks.filter(t => t.status !== 'completed');
 
   const handleSaveReflection = () => {
     playSoftClick(soundEnabled);
@@ -55,7 +55,6 @@ export default function AnalyticsView({
 
   const handleCompleteClosure = () => {
     playSoftClick(soundEnabled);
-    // Fire confetti celebration
     try {
       confetti({
         particleCount: 80,
@@ -63,7 +62,7 @@ export default function AnalyticsView({
         origin: { y: 0.6 }
       });
     } catch (e) {
-      // ignore if confetti fails
+      // ignore
     }
     playSuccessChime(soundEnabled);
     onRolloverTasks();
@@ -76,13 +75,13 @@ export default function AnalyticsView({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
         <div>
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
-            <Moon size={16} /> End-of-Day Decompression & Analytics
+            <Moon size={16} /> Daily Decompression
           </div>
           <h2 className="text-2xl font-bold tracking-tight font-display">
-            Daily Reflection & Closure Engine
+            Evening Reflection & Day Closure
           </h2>
           <p className={`text-xs sm:text-sm mt-1 max-w-2xl ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Acknowledge your efforts, balance your pillars, and close out the day without carrying residual guilt or stress.
+            Review your time invested, balance your life pillars, and close your day with clarity.
           </p>
         </div>
 
@@ -93,7 +92,7 @@ export default function AnalyticsView({
           }}
           className="px-5 py-3 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-md neu-button font-display"
         >
-          <Award size={16} /> Run End-of-Day Closure
+          <Award size={16} /> Close Out Day
         </button>
       </div>
 
@@ -108,13 +107,13 @@ export default function AnalyticsView({
             <span className="text-xs text-gray-500">of {estimatedBaselineMinutes}m planned</span>
           </div>
           <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            {completedSessions} focus blocks executed today.
+            {completedSessions} focus blocks completed today.
           </p>
         </div>
 
         <div className={`p-6 rounded-2xl ${neuCardClass} space-y-2`}>
           <span className={`text-xs font-semibold uppercase tracking-wider block ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Time Reclaimed & Saved
+            Time Reclaimed
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-emerald-500 font-display">
@@ -123,19 +122,19 @@ export default function AnalyticsView({
             <span className="text-xs text-emerald-600 font-medium">Saved via single-tasking</span>
           </div>
           <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Estimated 45% reduction in task-switching fatigue.
+            Reduced task-switching fatigue.
           </p>
         </div>
 
         <div className={`p-6 rounded-2xl ${neuCardClass} space-y-2`}>
           <span className={`text-xs font-semibold uppercase tracking-wider block ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Grounded Feeling Score
+            Grounded Rating
           </span>
           <div className="flex items-center gap-1 text-amber-400 text-2xl font-bold font-display">
             {'★'.repeat(groundedRating)}{'☆'.repeat(5 - groundedRating)}
           </div>
           <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Self-assessed mental clarity rating.
+            Self-assessed mental clarity.
           </p>
         </div>
       </div>
@@ -147,17 +146,17 @@ export default function AnalyticsView({
         <div className={`lg:col-span-7 p-6 sm:p-7 rounded-3xl ${neuCardClass} space-y-5`}>
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-bold font-display flex items-center gap-2">
-              <HeartHandshake size={20} className="text-[#5DA8A8]" /> Daily Micro-Reflection
+              <HeartHandshake size={20} className="text-[#5DA8A8]" /> Daily Reflection
             </h3>
             <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${neuInsetClass}`}>
-              Decompression
+              Evening Notes
             </span>
           </div>
 
           {/* Rating Stars Input */}
           <div>
             <label className={`text-xs font-semibold block mb-2 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-              How grounded and present did you feel today?
+              How grounded did you feel today?
             </label>
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4, 5].map(star => (
@@ -182,13 +181,13 @@ export default function AnalyticsView({
           {/* Text Reflection Input */}
           <div>
             <label className={`text-xs font-semibold block mb-2 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-              Evening Reflection & Notes (What went well? What can be safely released?)
+              Reflection Notes (What went well? What can be safely released?)
             </label>
             <textarea
               rows={4}
               value={reflectionText}
               onChange={(e) => setReflectionText(e.target.value)}
-              placeholder="e.g. Completed Bed 4 handover cleanly. Safe to postpone deep study until tomorrow morning..."
+              placeholder="e.g. ICU handover went smoothly. Releasing leftover study items until tomorrow morning..."
               className={`w-full p-4 rounded-2xl text-xs font-sans transition focus:outline-none focus:ring-2 focus:ring-[#5DA8A8]/60 ${neuInsetClass}`}
             />
           </div>
@@ -197,7 +196,7 @@ export default function AnalyticsView({
             onClick={handleSaveReflection}
             className="px-5 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-2 shadow-sm neu-button font-display"
           >
-            Save Daily Reflection
+            Save Reflection
           </button>
         </div>
 
@@ -205,12 +204,12 @@ export default function AnalyticsView({
         <div className={`lg:col-span-5 p-6 sm:p-7 rounded-3xl ${neuCardClass} space-y-5`}>
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-bold font-display flex items-center gap-2">
-              <BarChart3 size={20} className="text-[#5DA8A8]" /> Category Balance Matrix
+              <BarChart3 size={20} className="text-[#5DA8A8]" /> Life Pillar Balance
             </h3>
           </div>
 
           <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Distribution of completed focus blocks across life pillars.
+            Distribution of focus blocks completed across categories.
           </p>
 
           <div className="space-y-4 pt-2">
@@ -235,13 +234,13 @@ export default function AnalyticsView({
 
       </div>
 
-      {/* Rollover & Closure Flow Modal */}
+      {/* Day Closure Modal */}
       {closureModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
           <div className={`max-w-lg w-full p-6 sm:p-7 rounded-3xl ${neuCardClass} shadow-2xl relative space-y-5`}>
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold font-display flex items-center gap-2">
-                <Moon size={20} className="text-[#5DA8A8]" /> Day Closure Protocol
+                <Moon size={20} className="text-[#5DA8A8]" /> Close Out Day
               </h3>
               <button
                 onClick={() => setClosureModalOpen(false)}
@@ -252,7 +251,7 @@ export default function AnalyticsView({
             </div>
 
             <p className={`text-xs ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-              You have {incompleteTasks.length} open items remaining today. Choose how you would like to handle them to guarantee a clear head tonight.
+              You have {incompleteTasks.length} open items remaining. Carry them forward to tomorrow with a clear mind.
             </p>
 
             <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
@@ -260,14 +259,14 @@ export default function AnalyticsView({
                 <div key={t.id} className={`p-3 rounded-xl text-xs flex items-center justify-between ${neuInsetClass}`}>
                   <span className="font-semibold truncate max-w-[200px]">{t.title}</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#5DA8A8]/10 text-[#5DA8A8]">
-                    Carry to Tomorrow
+                    Carry Forward
                   </span>
                 </div>
               ))}
             </div>
 
             <div className={`p-4 rounded-2xl text-xs ${neuInsetClass} border border-[#5DA8A8]/30 space-y-1`}>
-              <p className="font-bold text-[#5DA8A8]">Guilt-Free Closure Rule:</p>
+              <p className="font-bold text-[#5DA8A8]">Closure Principle:</p>
               <p className={darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}>
                 "Whatever wasn't completed today was simply not meant for today. Re-anchor tomorrow without regret."
               </p>
@@ -278,7 +277,7 @@ export default function AnalyticsView({
                 onClick={handleCompleteClosure}
                 className="w-full py-3 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition neu-button shadow-md font-display"
               >
-                Acknowledge & Close Day
+                Complete Day Closure
               </button>
             </div>
           </div>

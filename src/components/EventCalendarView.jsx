@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar as CalendarIcon, Video, Users, MapPin, Plus, ExternalLink, Phone, Sparkles, Clock, CheckSquare, ChevronRight, Tag } from 'lucide-react';
+import { Calendar as CalendarIcon, Video, Users, MapPin, Plus, ExternalLink, Phone, Sparkles, Clock, CheckSquare, ChevronRight } from 'lucide-react';
 import { playSoftClick, playSuccessChime } from '../utils/audio';
 
 export default function EventCalendarView({
@@ -76,13 +76,13 @@ export default function EventCalendarView({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
         <div>
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
-            <CalendarIcon size={16} /> Extensible Multi-Category Event Engine
+            <CalendarIcon size={16} /> Events & Schedule
           </div>
           <h2 className="text-2xl font-bold tracking-tight font-display">
-            Interactive Agenda & Event Matrix
+            Upcoming Agenda
           </h2>
           <p className={`text-xs mt-0.5 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Polymorphic metadata rendering for Video Calls, Conferences, Parties, and Workshops.
+            Manage your meetings, calls, conferences, and events.
           </p>
         </div>
 
@@ -135,23 +135,23 @@ export default function EventCalendarView({
 
                 <h3 className="text-lg font-bold font-display">{evt.title}</h3>
 
-                {/* Polymorphic Metadata Rendering */}
+                {/* Event Location Details */}
                 {evt.category === 'video_call' && evt.locationDetails?.meetingUrl && (
                   <div className={`p-3.5 rounded-2xl text-xs space-y-2 ${neuInsetClass} border border-blue-500/20`}>
                     <div className="flex items-center justify-between font-semibold text-blue-500">
-                      <span className="flex items-center gap-1.5"><Video size={14} /> Virtual Conference Room</span>
+                      <span className="flex items-center gap-1.5"><Video size={14} /> Video Call</span>
                       <a
                         href={evt.locationDetails.meetingUrl}
                         target="_blank"
                         rel="noreferrer"
                         className="px-3 py-1 bg-blue-500 text-white rounded-lg text-[10px] font-bold flex items-center gap-1"
                       >
-                        Join Stream <ExternalLink size={10} />
+                        Join Call <ExternalLink size={10} />
                       </a>
                     </div>
                     {evt.locationDetails.dialInPin && (
                       <p className="text-[11px] text-gray-500 flex items-center gap-1 font-mono">
-                        <Phone size={12} /> Dial PIN: {evt.locationDetails.dialInPin}
+                        <Phone size={12} /> PIN: {evt.locationDetails.dialInPin}
                       </p>
                     )}
                   </div>
@@ -160,11 +160,11 @@ export default function EventCalendarView({
                 {(evt.category === 'party' || evt.category === 'conference') && evt.locationDetails?.address && (
                   <div className={`p-3.5 rounded-2xl text-xs space-y-1 ${neuInsetClass} border border-purple-500/20`}>
                     <div className="flex items-center gap-1.5 font-semibold text-purple-500">
-                      <MapPin size={14} /> Venue: {evt.locationDetails.address}
+                      <MapPin size={14} /> Location: {evt.locationDetails.address}
                     </div>
                     {evt.attendeesCount && (
                       <p className="text-[11px] text-gray-500 flex items-center gap-1">
-                        <Users size={12} /> {evt.attendeesCount} Registered Attendees
+                        <Users size={12} /> {evt.attendeesCount} Attendees
                       </p>
                     )}
                   </div>
@@ -174,7 +174,7 @@ export default function EventCalendarView({
                 {linkedTasks.length > 0 && (
                   <div className="space-y-1.5 pt-2">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#5DA8A8]">
-                      Linked Agenda Tasks ({linkedTasks.length})
+                      Linked Tasks ({linkedTasks.length})
                     </span>
                     {linkedTasks.map(t => (
                       <div key={t.id} className="text-xs flex items-center gap-2 font-medium">
@@ -199,7 +199,7 @@ export default function EventCalendarView({
                   }}
                   className="text-xs font-semibold text-[#5DA8A8] hover:underline flex items-center gap-1"
                 >
-                  + Add Task inside Event
+                  + Add Task to Event
                 </button>
 
                 <button
@@ -220,7 +220,7 @@ export default function EventCalendarView({
           <div className={`max-w-lg w-full p-6 sm:p-7 rounded-3xl ${neuCardClass} shadow-2xl relative`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold font-display flex items-center gap-2">
-                <CalendarIcon size={20} className="text-[#5DA8A8]" /> Schedule Multi-Category Event
+                <CalendarIcon size={20} className="text-[#5DA8A8]" /> Schedule Event
               </h3>
               <button onClick={() => setShowNewEventModal(false)} className={`p-1.5 rounded-xl ${neuCardClass} text-xs font-bold`}>
                 ✕

@@ -24,7 +24,6 @@ export default function FlowCanvasView({
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [selectedNodeId, setSelectedNodeId] = useState(null);
   const [connectSourceId, setConnectSourceId] = useState(null);
-  const [showAddNodeModal, setShowAddNodeModal] = useState(false);
 
   const handleMouseDownNode = (e, nodeId, nodePos) => {
     e.stopPropagation();
@@ -84,13 +83,13 @@ export default function FlowCanvasView({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
         <div>
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
-            <Sparkles size={16} /> Reactive Flow Canvas Engine
+            <Sparkles size={16} /> Flow Map
           </div>
           <h2 className="text-2xl font-bold tracking-tight font-display">
-            Interconnected Process Map
+            Process & Connection Diagram
           </h2>
           <p className={`text-xs mt-0.5 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-            Interactive nodes linked bidirectionally to Tasks and Events. Drag nodes to reorder execution graphs.
+            Drag nodes to organize your workflow and link tasks to events.
           </p>
         </div>
 
@@ -122,7 +121,15 @@ export default function FlowCanvasView({
           </div>
 
           <button
-            onClick={() => setShowAddNodeModal(true)}
+            onClick={() => {
+              playSoftClick(soundEnabled);
+              onCreateNode({
+                canvasId: 'main-canvas',
+                type: 'milestoneNode',
+                position: { x: 250, y: 180 },
+                data: { label: 'New Milestone' }
+              });
+            }}
             className="px-4 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm neu-button"
           >
             <Plus size={16} /> Add Node
@@ -222,7 +229,7 @@ export default function FlowCanvasView({
                 className={`absolute w-52 p-4 rounded-2xl transition-all duration-150 ${neuCardClass} z-20 border border-[#E2E8F0] dark:border-[#27272A] cursor-grab active:cursor-grabbing ${
                   isSelected ? 'ring-2 ring-[#5DA8A8] shadow-2xl' : ''
                 } ${isConnectSource ? 'ring-2 ring-amber-400 animate-pulse' : ''} ${
-                  isTaskCompleted ? 'ring-2 ring-emerald-500 shadow-emerald-500/20 animate-pulse' : ''
+                  isTaskCompleted ? 'ring-2 ring-emerald-500 shadow-emerald-500/20' : ''
                 }`}
                 style={{
                   left: `${node.position.x}px`,
@@ -245,7 +252,7 @@ export default function FlowCanvasView({
                         handleNodeClickForConnect(node.id);
                       }}
                       className="p-1 rounded text-gray-400 hover:text-[#5DA8A8]"
-                      title="Connect to another node"
+                      title="Connect to node"
                     >
                       <Link size={12} />
                     </button>
@@ -280,10 +287,10 @@ export default function FlowCanvasView({
         </div>
       </div>
 
-      {/* Unlinked Entities Drop Target / Converter Ribbon */}
+      {/* Convert Task to Flow Node Ribbon */}
       <div className={`p-5 rounded-3xl ${neuCardClass} space-y-3`}>
         <h3 className="text-sm font-bold font-display flex items-center gap-2">
-          <Link size={16} className="text-[#5DA8A8]" /> Quick-Convert Unlinked Entities to Flow Nodes
+          <Link size={16} className="text-[#5DA8A8]" /> Add Unlinked Tasks to Flow Map
         </h3>
 
         <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
@@ -296,7 +303,7 @@ export default function FlowCanvasView({
               }}
               className={`px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap neu-button ${neuInsetClass} hover:text-[#5DA8A8]`}
             >
-              + Convert Task: "{t.title.slice(0, 20)}..."
+              + Add: "{t.title.slice(0, 24)}..."
             </button>
           ))}
         </div>
