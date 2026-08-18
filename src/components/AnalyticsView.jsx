@@ -3,6 +3,7 @@ import { Sparkles, Calendar, Clock, CheckCircle2, RotateCcw, Award, ArrowRight, 
 import confetti from 'canvas-confetti';
 import { CATEGORIES } from '../utils/storage';
 import { playSoftClick, playSuccessChime } from '../utils/audio';
+import { getAssetPath } from '../utils/asset';
 
 export default function AnalyticsView({
   tasks,
@@ -71,9 +72,19 @@ export default function AnalyticsView({
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
-        <div>
+      {/* Header Banner featuring KPI_3.jpeg backdrop */}
+      <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl ${neuCardClass} bg-[#5DA8A8]/5 border border-[#5DA8A8]/20 relative overflow-hidden group`}>
+        {/* Background KPI_3.jpeg Accent */}
+        <div className="absolute right-0 top-0 bottom-0 w-80 opacity-10 dark:opacity-20 pointer-events-none transition-opacity group-hover:opacity-25">
+          <img
+            src={getAssetPath('/KPI_3.jpeg')}
+            alt="Reflection Backdrop"
+            className="w-full h-full object-cover mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#F9F9F7] dark:to-[#1A1A1C]" />
+        </div>
+
+        <div className="relative z-10">
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
             <Moon size={16} /> Daily Decompression
           </div>
@@ -90,7 +101,7 @@ export default function AnalyticsView({
             playSoftClick(soundEnabled);
             setClosureModalOpen(true);
           }}
-          className="px-5 py-3 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-md neu-button font-display"
+          className="px-5 py-3 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-md neu-button font-display relative z-10"
         >
           <Award size={16} /> Close Out Day
         </button>

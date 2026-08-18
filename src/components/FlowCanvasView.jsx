@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Plus, ZoomIn, ZoomOut, RefreshCw, Sparkles, Move, Trash2, Link, ArrowRight, Play, CheckCircle2, AlertCircle } from 'lucide-react';
 import { playSoftClick, playSuccessChime } from '../utils/audio';
+import { getAssetPath } from '../utils/asset';
 
 export default function FlowCanvasView({
   flowNodes,
@@ -79,9 +80,19 @@ export default function FlowCanvasView({
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Canvas Header Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl neuCardClass bg-[#5DA8A8]/5 border border-[#5DA8A8]/20">
-        <div>
+      {/* Canvas Header Toolbar featuring KPI_2.jpeg backdrop */}
+      <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-3xl ${neuCardClass} bg-[#5DA8A8]/5 border border-[#5DA8A8]/20 relative overflow-hidden group`}>
+        {/* Background KPI_2.jpeg Accent */}
+        <div className="absolute right-0 top-0 bottom-0 w-80 opacity-10 dark:opacity-20 pointer-events-none transition-opacity group-hover:opacity-25">
+          <img
+            src={getAssetPath('/KPI_2.jpeg')}
+            alt="Flow Backdrop"
+            className="w-full h-full object-cover mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#F9F9F7] dark:to-[#1A1A1C]" />
+        </div>
+
+        <div className="relative z-10">
           <div className="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-wider text-[#5DA8A8]">
             <Sparkles size={16} /> Flow Map
           </div>
@@ -94,7 +105,7 @@ export default function FlowCanvasView({
         </div>
 
         {/* Toolbar Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 relative z-10">
           <div className={`p-1 rounded-xl flex items-center gap-1 ${neuCardClass}`}>
             <button
               onClick={() => setZoom(z => Math.min(1.6, z + 0.1))}

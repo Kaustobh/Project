@@ -41,22 +41,27 @@ export default function DashboardView({
       {/* Top Banner / Hero Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left 7 Cols: Hero "One Next Step" + KPI Grid + Category Filters + Task Horizon */}
+        {/* Left 7 Cols: Hero Focus Card + KPI Deck + Filters + Task Horizon */}
         <div className="lg:col-span-7 space-y-6">
           
-          {/* Hero "One Next Step" Focus Card with attached logo.jpeg accent */}
-          <div className={`p-6 sm:p-7 rounded-3xl ${neuCardClass} border-l-4 border-l-[#5DA8A8] relative overflow-hidden group`}>
-            {/* Background Graphic Accent using logo.jpeg with getAssetPath */}
-            <div className="absolute right-0 top-0 bottom-0 w-48 opacity-10 dark:opacity-15 pointer-events-none transition-opacity group-hover:opacity-20">
-              <img src={getAssetPath('/logo.jpeg')} alt="Logo Watermark" className="w-full h-full object-cover" />
+          {/* Hero Focus Card with watermark background overlay using logo.jpeg */}
+          <div className={`p-6 sm:p-7 rounded-3xl ${neuCardClass} border-l-4 border-l-[#5DA8A8] relative overflow-hidden group shadow-lg`}>
+            {/* Background Image Accent with subtle gradient mask */}
+            <div className="absolute right-0 top-0 bottom-0 w-64 opacity-15 dark:opacity-25 pointer-events-none transition-all group-hover:opacity-30 group-hover:scale-105">
+              <img
+                src={getAssetPath('/logo.jpeg')}
+                alt="Brand Watermark Accent"
+                className="w-full h-full object-cover mix-blend-luminosity"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#F9F9F7] dark:to-[#1A1A1C]" />
             </div>
 
             <div className="flex items-center justify-between mb-3 relative z-10">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#5DA8A8] flex items-center gap-1.5 font-display">
-                <Sparkles size={15} /> Current Anchor — One Next Step
+              <span className="text-xs font-bold uppercase tracking-wider text-[#5DA8A8] flex items-center gap-1.5 font-display">
+                <Sparkles size={15} /> Current Focus Anchor
               </span>
               {activeTask && (
-                <span className={`text-[11px] px-2.5 py-1 rounded-full font-medium ${neuInsetClass}`}>
+                <span className={`text-[11px] px-2.5 py-1 rounded-full font-semibold ${neuInsetClass}`}>
                   {activeTask.category}
                 </span>
               )}
@@ -77,7 +82,7 @@ export default function DashboardView({
                       playSoftClick(soundEnabled);
                       setIsTimerRunning(true);
                     }}
-                    className="px-5 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-semibold rounded-xl transition flex items-center gap-2 shadow-sm neu-button"
+                    className="px-5 py-2.5 bg-[#5DA8A8] hover:bg-[#4E9393] text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-md neu-button font-display"
                   >
                     <Play size={16} /> Begin Steady Session
                   </button>
@@ -87,7 +92,7 @@ export default function DashboardView({
                       playSoftClick(soundEnabled);
                       onOpenTaskModal(activeTask);
                     }}
-                    className={`px-4 py-2.5 rounded-xl text-xs font-medium transition ${neuCardClass} hover:text-[#5DA8A8] neu-button`}
+                    className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition ${neuCardClass} hover:text-[#5DA8A8] neu-button`}
                   >
                     View Details & Notes
                   </button>
@@ -103,25 +108,30 @@ export default function DashboardView({
                     playSoftClick(soundEnabled);
                     onOpenNewTask();
                   }}
-                  className="px-4 py-2 bg-[#5DA8A8] text-white text-xs font-semibold rounded-xl neu-button"
+                  className="px-4 py-2 bg-[#5DA8A8] text-white text-xs font-semibold rounded-xl neu-button font-display"
                 >
-                  Create First Task
+                  Create Anchor Task
                 </button>
               </div>
             )}
           </div>
 
-          {/* Metric KPI Deck (Neumorphic Cards with KPI_1.jpeg, KPI_2.jpeg, KPI_3.jpeg) */}
+          {/* Metric KPI Deck (3 Neumorphic Cards featuring KPI_1.jpeg, KPI_2.jpeg, KPI_3.jpeg) */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4">
             
-            {/* KPI 1 Card */}
-            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
-              <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src={getAssetPath('/KPI_1.jpeg')} alt="KPI 1 Graphic" className="w-full h-full object-cover" />
+            {/* KPI 1 Card with KPI_1.jpeg background overlay */}
+            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.03] group`}>
+              <div className="absolute inset-0 opacity-15 dark:opacity-25 pointer-events-none group-hover:opacity-35 transition-opacity">
+                <img
+                  src={getAssetPath('/KPI_1.jpeg')}
+                  alt="Time Saved Backdrop"
+                  className="w-full h-full object-cover filter blur-[0.5px] scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F9F9F7] via-transparent to-transparent dark:from-[#1A1A1C]" />
               </div>
               <div className="relative z-10">
-                <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-                  Time Reclaimed
+                <span className={`text-[11px] block font-semibold mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+                  Time Saved
                 </span>
                 <span className="text-xl sm:text-2xl font-bold text-[#5DA8A8] font-display">
                   {timeReclaimedMinutes}m
@@ -129,14 +139,19 @@ export default function DashboardView({
               </div>
             </div>
 
-            {/* KPI 2 Card */}
-            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
-              <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src={getAssetPath('/KPI_2.jpeg')} alt="KPI 2 Graphic" className="w-full h-full object-cover" />
+            {/* KPI 2 Card with KPI_2.jpeg background overlay */}
+            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.03] group`}>
+              <div className="absolute inset-0 opacity-15 dark:opacity-25 pointer-events-none group-hover:opacity-35 transition-opacity">
+                <img
+                  src={getAssetPath('/KPI_2.jpeg')}
+                  alt="Active Flow Backdrop"
+                  className="w-full h-full object-cover filter blur-[0.5px] scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F9F9F7] via-transparent to-transparent dark:from-[#1A1A1C]" />
               </div>
               <div className="relative z-10">
-                <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-                  Active Flow
+                <span className={`text-[11px] block font-semibold mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+                  Focus Blocks
                 </span>
                 <span className="text-xl sm:text-2xl font-bold font-display">
                   {completedSessions} <span className="text-xs font-normal opacity-70">blocks</span>
@@ -144,14 +159,19 @@ export default function DashboardView({
               </div>
             </div>
 
-            {/* KPI 3 Card */}
-            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
-              <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src={getAssetPath('/KPI_3.jpeg')} alt="KPI 3 Graphic" className="w-full h-full object-cover" />
+            {/* KPI 3 Card with KPI_3.jpeg background overlay */}
+            <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.03] group`}>
+              <div className="absolute inset-0 opacity-15 dark:opacity-25 pointer-events-none group-hover:opacity-35 transition-opacity">
+                <img
+                  src={getAssetPath('/KPI_3.jpeg')}
+                  alt="Completion Rate Backdrop"
+                  className="w-full h-full object-cover filter blur-[0.5px] scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F9F9F7] via-transparent to-transparent dark:from-[#1A1A1C]" />
               </div>
               <div className="relative z-10">
-                <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
-                  Completion Rate
+                <span className={`text-[11px] block font-semibold mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
+                  Completion
                 </span>
                 <span className="text-xl sm:text-2xl font-bold text-emerald-500 font-display">
                   {completionRate}%
@@ -186,11 +206,11 @@ export default function DashboardView({
             })}
           </div>
 
-          {/* Today's Task Horizon Header */}
+          {/* Today's Horizon Header */}
           <div className="flex items-center justify-between pt-2">
             <h3 className="text-lg font-bold tracking-tight font-display flex items-center gap-2">
-              Today's Horizon
-              <span className={`text-xs px-2 py-0.5 rounded-full font-normal ${neuInsetClass}`}>
+              Today's Tasks
+              <span className={`text-xs px-2.5 py-0.5 rounded-full font-normal ${neuInsetClass}`}>
                 {filteredTasks.length} {filteredTasks.length === 1 ? 'task' : 'tasks'}
               </span>
             </h3>
