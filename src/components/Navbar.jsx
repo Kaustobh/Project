@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sun, Moon, Volume2, VolumeX, Plus } from 'lucide-react';
 import { playSoftClick } from '../utils/audio';
+import { getAssetPath } from '../utils/asset';
 
 export default function Navbar({
   darkMode,
@@ -36,7 +37,7 @@ export default function Navbar({
           className={`w-11 h-11 rounded-2xl p-1.5 flex items-center justify-center transition-transform hover:scale-105 neu-button overflow-hidden ${neuCardClass}`}
           title="Replay Splash Screen"
         >
-          <img src="/LOGO.png" alt="Steady Logo" className="w-full h-full object-contain" />
+          <img src={getAssetPath('/LOGO.png')} alt="Steady Logo" className="w-full h-full object-contain" />
         </button>
 
         <div>

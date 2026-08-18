@@ -1,4 +1,5 @@
 import { Briefcase, GraduationCap, User, Calendar, Compass } from 'lucide-react';
+import { getAssetPath } from './asset';
 
 export const CATEGORIES = [
   { id: 'all', label: 'All Categories', icon: Compass, color: '#5DA8A8' },
@@ -78,7 +79,7 @@ export const INITIAL_TASKS = [
   }
 ];
 
-// Using project attached images for Pinboard items
+// Using project attached images with GitHub Pages base path resolution
 export const INITIAL_PINBOARD = [
   {
     id: 'p-1',
@@ -87,7 +88,7 @@ export const INITIAL_PINBOARD = [
     url: 'https://example.com/ecg-guide',
     durationMinutes: 15,
     category: 'Academics',
-    imageUrl: '/KPI_4.jpeg',
+    imageUrl: getAssetPath('/KPI_4.jpeg'),
     quote: 'ST-segment elevation in contiguous leads points directly to regional ischemia.'
   },
   {
@@ -97,7 +98,7 @@ export const INITIAL_PINBOARD = [
     url: 'https://example.com/box-breathing',
     durationMinutes: 10,
     category: 'Personal Life',
-    imageUrl: '/KPI_5.jpeg',
+    imageUrl: getAssetPath('/KPI_5.jpeg'),
     quote: 'Inhale for 4s, hold for 4s, exhale for 4s, hold for 4s.'
   },
   {
@@ -107,7 +108,7 @@ export const INITIAL_PINBOARD = [
     url: 'https://example.com/80-20-med',
     durationMinutes: 20,
     category: 'Professional Life',
-    imageUrl: '/KPI_6.jpeg',
+    imageUrl: getAssetPath('/KPI_6.jpeg'),
     quote: 'Focus 80% of your time on core diagnostic criteria that yield 80% of clinical accuracy.'
   },
   {
@@ -117,7 +118,7 @@ export const INITIAL_PINBOARD = [
     url: 'https://example.com/ambient-focus',
     durationMinutes: 45,
     category: 'Personal Life',
-    imageUrl: '/logo.jpeg',
+    imageUrl: getAssetPath('/logo.jpeg'),
     quote: 'Gentle acoustic soundscapes designed to reduce cognitive strain.'
   }
 ];

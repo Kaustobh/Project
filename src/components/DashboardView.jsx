@@ -2,6 +2,7 @@ import React from 'react';
 import { Sparkles, Play, CheckCircle2, Circle, ChevronRight, Plus } from 'lucide-react';
 import { CATEGORIES } from '../utils/storage';
 import { playSoftClick } from '../utils/audio';
+import { getAssetPath } from '../utils/asset';
 import SteadyTimerWidget from './SteadyTimerWidget';
 
 export default function DashboardView({
@@ -45,9 +46,9 @@ export default function DashboardView({
           
           {/* Hero "One Next Step" Focus Card with attached logo.jpeg accent */}
           <div className={`p-6 sm:p-7 rounded-3xl ${neuCardClass} border-l-4 border-l-[#5DA8A8] relative overflow-hidden group`}>
-            {/* Background Graphic Accent using logo.jpeg */}
+            {/* Background Graphic Accent using logo.jpeg with getAssetPath */}
             <div className="absolute right-0 top-0 bottom-0 w-48 opacity-10 dark:opacity-15 pointer-events-none transition-opacity group-hover:opacity-20">
-              <img src="/logo.jpeg" alt="Logo Watermark" className="w-full h-full object-cover" />
+              <img src={getAssetPath('/logo.jpeg')} alt="Logo Watermark" className="w-full h-full object-cover" />
             </div>
 
             <div className="flex items-center justify-between mb-3 relative z-10">
@@ -116,7 +117,7 @@ export default function DashboardView({
             {/* KPI 1 Card */}
             <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
               <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src="/KPI_1.jpeg" alt="KPI 1 Graphic" className="w-full h-full object-cover" />
+                <img src={getAssetPath('/KPI_1.jpeg')} alt="KPI 1 Graphic" className="w-full h-full object-cover" />
               </div>
               <div className="relative z-10">
                 <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
@@ -131,7 +132,7 @@ export default function DashboardView({
             {/* KPI 2 Card */}
             <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
               <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src="/KPI_2.jpeg" alt="KPI 2 Graphic" className="w-full h-full object-cover" />
+                <img src={getAssetPath('/KPI_2.jpeg')} alt="KPI 2 Graphic" className="w-full h-full object-cover" />
               </div>
               <div className="relative z-10">
                 <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
@@ -146,7 +147,7 @@ export default function DashboardView({
             {/* KPI 3 Card */}
             <div className={`p-4 rounded-2xl text-center ${neuCardClass} relative overflow-hidden transition hover:scale-[1.02]`}>
               <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
-                <img src="/KPI_3.jpeg" alt="KPI 3 Graphic" className="w-full h-full object-cover" />
+                <img src={getAssetPath('/KPI_3.jpeg')} alt="KPI 3 Graphic" className="w-full h-full object-cover" />
               </div>
               <div className="relative z-10">
                 <span className={`text-[11px] block font-medium mb-1 ${darkMode ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>

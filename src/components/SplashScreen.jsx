@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getAssetPath } from '../utils/asset';
 
 export default function SplashScreen({ darkMode, onComplete }) {
   const [fade, setFade] = useState(false);
@@ -30,7 +31,7 @@ export default function SplashScreen({ darkMode, onComplete }) {
         }`}
       >
         <img
-          src="/LOGO.png"
+          src={getAssetPath('/LOGO.png')}
           alt="Steady App Logo"
           className="w-full h-full object-contain drop-shadow-md"
         />
