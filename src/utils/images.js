@@ -1,49 +1,26 @@
-// ES Module asset imports ensuring Vite bundles, hashes, and resolves exact URLs for GitHub Pages
+// Dynamic base-path resolution helper for public assets on GitHub Pages (/Project/)
 
-import logoPng from '/public/LOGO.png?url';
-import logoJpeg from '/public/logo.jpeg?url';
-import kpi1 from '/public/KPI_1.jpeg?url';
-import kpi2 from '/public/KPI_2.jpeg?url';
-import kpi3 from '/public/KPI_3.jpeg?url';
-import kpi4 from '/public/KPI_4.jpeg?url';
-import kpi5 from '/public/KPI_5.jpeg?url';
-import kpi6 from '/public/KPI_6.jpeg?url';
-
-export const IMAGES = {
-  LOGO_PNG: logoPng,
-  LOGO_JPEG: logoJpeg,
-  KPI_1: kpi1,
-  KPI_2: kpi2,
-  KPI_3: kpi3,
-  KPI_4: kpi4,
-  KPI_5: kpi5,
-  KPI_6: kpi6
-};
-
-export function getImage(keyOrPath) {
-  if (!keyOrPath) return logoPng;
-  if (keyOrPath.startsWith('http://') || keyOrPath.startsWith('https://') || keyOrPath.startsWith('data:')) {
-    return keyOrPath;
+export function getImage(path) {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path;
   }
   
-  const map = {
-    '/LOGO.png': logoPng,
-    'LOGO.png': logoPng,
-    '/logo.jpeg': logoJpeg,
-    'logo.jpeg': logoJpeg,
-    '/KPI_1.jpeg': kpi1,
-    'KPI_1.jpeg': kpi1,
-    '/KPI_2.jpeg': kpi2,
-    'KPI_2.jpeg': kpi2,
-    '/KPI_3.jpeg': kpi3,
-    'KPI_3.jpeg': kpi3,
-    '/KPI_4.jpeg': kpi4,
-    'KPI_4.jpeg': kpi4,
-    '/KPI_5.jpeg': kpi5,
-    'KPI_5.jpeg': kpi5,
-    '/KPI_6.jpeg': kpi6,
-    'KPI_6.jpeg': kpi6,
-  };
+  const base = import.meta.env.BASE_URL || '/';
+  // Ensure base ends with slash and cleanPath has no leading slash
+  const formattedBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  return map[keyOrPath] || keyOrPath;
+  return `${formattedBase}${cleanPath}`;
 }
+
+export const IMAGES = {
+  LOGO_PNG: getImage('/LOGO.png'),
+  LOGO_JPEG: getImage('/logo.jpeg'),
+  KPI_1: getImage('/KPI_1.jpeg'),
+  KPI_2: getImage('/KPI_2.jpeg'),
+  KPI_3: getImage('/KPI_3.jpeg'),
+  KPI_4: getImage('/KPI_4.jpeg'),
+  KPI_5: getImage('/KPI_5.jpeg'),
+  KPI_6: getImage('/KPI_6.jpeg'),
+};
