@@ -6,8 +6,9 @@
 
 ## 🌐 Live Application Links
 
-* **[http://localhost:3000/](http://localhost:3000/)** — Primary Live App Server
-* **[http://localhost:3001/](http://localhost:3001/)** — Secondary Port
+* 🚀 **[https://Kaustobh.github.io/Project/](https://Kaustobh.github.io/Project/)** — **Official Production Web App (Hosted on GitHub Pages)**
+* 💻 **[http://localhost:3000/](http://localhost:3000/)** — Primary Local Development Server
+* 💻 **[http://localhost:3002/](http://localhost:3002/)** — Secondary Local Development Server
 
 ---
 
@@ -23,7 +24,7 @@
 │   ├── 06_field_test_protocol.md   # Field test protocol, evaluation tasks & user metrics
 │   └── 07_user_impact_and_painpoint_resolution.md # Deep dive: How Steady solves user pain points
 ├── public/                         # Static image assets (LOGO.png, KPI_1-6.jpeg)
-├── src/                            # Production React codebase
+├── src/                            # Production React + TypeScript codebase
 └── README.md                       # High-level overview & documentation index
 ```
 
@@ -36,7 +37,7 @@
 - 🎯 **[02. Scope Trade-offs](docs/02_scope_tradeoffs.md):** Core solution boundaries, 1+3 task framing, and explicit out-of-scope feature matrix.
 - 🪵 **[03. Decision Log](docs/03_decision_log.md):** Execution log history, architectural pivots, dead ends, AI hallucination overrides, and milestone records.
 - 🎨 **[04. UI Design System & Asset Guidelines](docs/04_ui_design_system.md):** 60-30-10 color rules, extruded/inset shadow tokens, audio haptic synthesis, and 1:1 image placement table.
-- 🏗️ **[05. Technical Architecture](docs/05_technical_architecture.md):** Vite + React architecture, LocalStorage schema, component hierarchy, and Pomodoro timer mechanics.
+- 🏗️ **[05. Technical Architecture](docs/05_technical_architecture.md):** Vite + React + TypeScript architecture, relational reactive store, flow canvas & calendar engines.
 - 🔬 **[06. Field Test Protocol](docs/06_field_test_protocol.md):** 1-Day unmoderated field test evaluation tasks, metrics checklist, and observation protocol.
 
 ---
